@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ES6", 
+    "moduleResolution": "node",
+    "target": "ES6" 
+  },
+  "include": ["vite.config.ts"],
+  "references": [{ "path": "./tsconfig.json" }],
+  "lib": ["ES6", "DOM"] 
+}

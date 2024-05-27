@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Para melhor compatibilidade com navegadores mais antigos
+    "useDefineForClassFields": true, // Fique atento a isso, pode precisar de polyfills
+    "module": "ES2020", // Opção segura para compatibilidade
+    "moduleResolution": "node",
+    "strict": true, // Isso é para verificação de tipo e não afeta a compatibilidade
+    "jsx": "preserve", // Se você está usando JSX com Vue.js, você pode manter isso
+    "sourceMap": false, // Útil para depuração
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": [
+      "ES2020", // Corresponder ao seu target
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/plugins/*.ts",
+    ".eslintrc.cjs",
+    "vite.config.js",
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

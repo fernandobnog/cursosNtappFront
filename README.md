@@ -1,1 +1,3 @@
-# cursosNtappFront
+# ntappfront
+
+npx cypress open
