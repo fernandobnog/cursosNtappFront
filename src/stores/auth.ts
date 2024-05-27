@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import { killToken, saveToken, isLogged, saveUser } from '../common/authHandler';
 import { authService } from '../service/auth';
-import { IAuth, IAuthCache } from '../types/auth';
 import CryptoJS from 'crypto-js';
 
 export const authStore = defineStore('idauthstore', {
