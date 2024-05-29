@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from "axios";
-import { IAuthCache } from "../types/auth";
+import { UserCache } from "../types/auth";
 
 function getToken() {
   return localStorage.getItem("token");
@@ -9,7 +9,7 @@ function saveToken(token: string) {
   localStorage.setItem("token", token);
 }
 
-function saveUser(user: IAuthCache) {
+function saveUser(user: UserCache) {
   localStorage.setItem("user", JSON.stringify(user));
 }
 

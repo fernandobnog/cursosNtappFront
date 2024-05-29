@@ -5,12 +5,13 @@ import { isLogged } from "../../common/authHandler";
 
 import { authStore } from "../../stores/auth";
 import { killToken } from "../../common/authHandler";
+import { AuthenticationRequest } from "../../types/auth";
 
 export default defineComponent({
   name: "AuthView",
 
   data: () => ({
-    usuario: {} as IAuth,
+    usuario: {} as AuthenticationRequest,
     loginDelay: false,
   }),
 
@@ -34,8 +35,7 @@ export default defineComponent({
     async signIn() {
       this.loginDelay = true;
       const user = Object.assign({}, this.usuario)
-      this.setUser(user);
-      await this.login(this.user)
+      await this.login(user)
 
       if (!this.isAuthenticated) {
         this.$toast.add({
@@ -48,7 +48,7 @@ export default defineComponent({
       if (isLogged()) {
         await this.$router.push("/");
         this.user_state_clear();
-        this.usuario = {} as IAuth;
+        this.usuario = {} as AuthenticationRequest;
       }
       this.isAuthenticated_state_clear();
       this.loginDelay = false;
@@ -74,14 +74,14 @@ export default defineComponent({
           <div class="col-12 md:col-6">
             <label class="placeholder">Usuário</label>
             <div class="p-inputgroup">
-              <InputText v-model="usuario.userName" class="w-full" placeholder="Usuário" data-test="usuario.userName" />
+              <InputText v-model="usuario.username" class="w-full" placeholder="Usuário" data-test="usuario.userName" />
             </div>
           </div>
 
           <div class="col-12 md:col-6">
             <label class="placeholder">Senha</label>
             <div class="p-inputgroup">
-              <Password :feedback="false" class="w-full" placeholder="Senha" v-model="usuario.userPassword" toggleMask
+              <Password :feedback="false" class="w-full" placeholder="Senha" v-model="usuario.password" toggleMask
                 v-on:keyup.enter="signIn()" data-test="usuario.userPassword" />
             </div>
           </div>

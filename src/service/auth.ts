@@ -5,16 +5,29 @@ import { AuthenticationRequest, User } from '../types/auth'
 export const authService = {
 
   login: async (authenticationRequest: AuthenticationRequest): Promise<string> => {
-    return axios.post('/login', authenticationRequest, setHeaderAuth())
-      .then(response => {
-        return response.data as string
-      })
+    try {
+      const response = await axios.post('/login', authenticationRequest, setHeaderAuth());
+      return response.data as string;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw error.response?.status;
+      } else {
+        throw error;
+      }
+    }
   },
 
   registrar: async (user: User): Promise<string> => {
-    return axios.post('/login', user, setHeaderAuth())
-      .then(response => {
-        return response.data as string
-      })
-  },
+    try {
+      const response = await axios.post('/registrar', user, setHeaderAuth());
+      return response.data as string;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw error.response?.status;
+      } else {
+        throw error;
+      }
+    }
+  }
+
 }
